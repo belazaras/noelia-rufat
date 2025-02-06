@@ -44,8 +44,8 @@ const locate: DocumentLocationResolver = (params, context) => {
 }
 
 export default defineConfig({
-  name: 'project-name',
-  title: 'Project Name',
+  name: 'noelia-rufat',
+  title: 'Noelia Rufat',
   projectId,
   dataset,
   plugins: [
