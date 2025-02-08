@@ -11,7 +11,7 @@ export const dataset = process.env.SANITY_STUDIO_DATASET!
 const locate: DocumentLocationResolver = (params, context) => {
   const {documentStore} = context
 
-  if (params.type === 'post') {
+  if (params.type === 'actor') {
     // Listen to the query and fetch the draft and published document
     const doc$ = documentStore.listenQuery(`*[_id == $id][0]{slug,title}`, params, {
       perspective: 'previewDrafts',
@@ -28,10 +28,10 @@ const locate: DocumentLocationResolver = (params, context) => {
           locations: [
             {
               title: doc.title || 'Untitled',
-              href: `/post/${doc.slug.current}`,
+              href: `/actor/${doc.slug.current}`,
             },
             {
-              title: 'Posts',
+              title: 'Actors',
               href: `/`,
             },
           ],

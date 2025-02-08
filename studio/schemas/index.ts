@@ -1,4 +1,6 @@
 import blockContent from './blockContent'
-import post from './post'
+import actor from './actor'
+import actress from './actress'
+import logo from './logo'
 
-export const schemaTypes = [post, blockContent]
+export const schemaTypes = [actor, actress, blockContent, logo]
