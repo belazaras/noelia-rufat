@@ -37,11 +37,11 @@ export default function ActorRoute() {
       <Heading as="h1" className="whitespace-normal text-2xl my-2 md:hidden">
         {data?.name}
       </Heading>
-      <div className="flex overflow-x-auto">
+      <div className="md:flex md:overflow-x-auto">
         {data?.mainImage && (
           <img
             data-sanity={encodeDataAttribute('mainImage')}
-            className="flex-shrink-0 max-h-[620px] object-cover"
+            className="flex-shrink-0 max-h-[620px] object-cover w-full md:w-fit"
             src={urlFor(data.mainImage).url()}
             alt=""
           />
@@ -51,7 +51,7 @@ export default function ActorRoute() {
             <img
               key={i}
               data-sanity={encodeDataAttribute('img')}
-              className="flex-shrink-0 h-[620px] object-cover"
+              className="flex-shrink-0 h-[620px] object-cover w-full md:w-fit"
               src={urlFor(img).url()}
               alt=""
             />

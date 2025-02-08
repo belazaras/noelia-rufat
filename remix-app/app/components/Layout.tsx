@@ -90,7 +90,7 @@ function Footer() {
   const isHome = useIsHomePath();
 
   return (
-    <footer className="footer my-2">
+    <footer className="footer mt-4 mb-2">
       <p className="footer__text">
         Made with{' '}
         <svg
