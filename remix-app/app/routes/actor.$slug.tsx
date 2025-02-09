@@ -37,29 +37,52 @@ export default function ActorRoute() {
       <Heading as="h1" className="whitespace-normal text-2xl my-2 md:hidden">
         {data?.name}
       </Heading>
-      <div className="md:flex md:overflow-x-auto">
-        {data?.mainImage && (
-          <img
-            data-sanity={encodeDataAttribute('mainImage')}
-            className="flex-shrink-0 max-h-[620px] object-cover w-full md:w-fit"
-            src={urlFor(data.mainImage).url()}
-            alt=""
-          />
-        )}
-        {data?.gallery?.length && (
-          data.gallery.map((img, i) => (
+      <div className="w-full inline-flex flex-nowrap overflow-hidden">
+        <div className="md:flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none md:animate-infinite-scroll">
+          {data?.mainImage && (
             <img
-              key={i}
-              data-sanity={encodeDataAttribute('img')}
-              className="flex-shrink-0 h-[620px] object-cover w-full md:w-fit"
-              src={urlFor(img).url()}
+              data-sanity={encodeDataAttribute('mainImage')}
+              className="flex-shrink-0 max-h-[620px] object-cover w-full md:w-fit"
+              src={urlFor(data.mainImage).url()}
               alt=""
             />
-          ))
-        )}
+          )}
+          {data?.gallery?.length && (
+            data.gallery.map((img, i) => (
+              <img
+                key={i}
+                data-sanity={encodeDataAttribute('img')}
+                className="flex-shrink-0 h-[620px] object-cover w-full md:w-fit"
+                src={urlFor(img).url()}
+                alt=""
+              />
+            ))
+          )}
+        </div>
+        <div className="hidden md:flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"  aria-hidden="true">
+          {data?.mainImage && (
+            <img
+              data-sanity={encodeDataAttribute('mainImage')}
+              className="flex-shrink-0 max-h-[620px] object-cover w-full md:w-fit"
+              src={urlFor(data.mainImage).url()}
+              alt=""
+            />
+          )}
+          {data?.gallery?.length && (
+            data.gallery.map((img, i) => (
+              <img
+                key={i}
+                data-sanity={encodeDataAttribute('img')}
+                className="flex-shrink-0 h-[620px] object-cover w-full md:w-fit"
+                src={urlFor(img).url()}
+                alt=""
+              />
+            ))
+          )}
+        </div>
       </div>
-      <div className="post__container">
-        <Heading as="h1" className="whitespace-normal text-2xl my-2 hidden md:block">
+      <div className="">
+        <Heading as="h1" size="heading" className="whitespace-normal mb-2 hidden md:block">
           {data?.name}
         </Heading>
         {/* {data?._createdAt && <p className="post__date">{formatDate(data._createdAt)}</p>} */}

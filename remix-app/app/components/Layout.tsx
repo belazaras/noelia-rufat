@@ -56,11 +56,11 @@ function DesktopHeader({ isHome, menu, logo }) {
       role="banner"
       className={`
       ${isHome ? 'dark:bg-contrast/60 text-primary text-white' : 'text-primary backdrop-blur-lg lg:sticky shadow-darkHeader'}
-       md:h-[3em] md:flex items-center transition duration-300 z-40 top-0 justify-between w-full leading-none gap-8 px-12 py-4 md:py-8 font-light`}
+       md:h-nav md:flex items-center transition duration-300 z-40 top-0 justify-between w-full leading-none gap-8 px-12 py-4 md:py-8 font-light`}
     >
       <div className="flex gap-12 items-center mb-2 md:mb-0">
-        <Link className="font-bold" to="/" prefetch="intent" className="mx-auto md:mx-0">
-          <img src={urlFor(logo).url()} alt={logo} className="w-[110px]" />
+        <Link to="/" prefetch="intent" className="font-bold mx-auto md:mx-0">
+          <img src={urlFor(logo).url()} alt={logo} className="w-[150px] drop-shadow-md md:mt-4" />
         </Link>
       </div>
       <div className="flex items-center gap-1 justify-center">

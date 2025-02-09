@@ -67,7 +67,7 @@ export function Heading({
   const sizes = {
     hero: 'font-medium text-5xl lg:text-9xl leading-tight',
     display: 'font-bold text-display',
-    heading: 'font-semibold text-heading',
+    heading: 'font-semibold text-xl',
     lead: 'font-bold text-lead',
     copy: 'font-medium text-copy',
   };

@@ -17,6 +17,24 @@ export default {
         copy: ['var(--font-size-copy)', '1.5'],
         fine: ['var(--font-size-fine)', '1.333'],
       },
+      animation: {
+        'infinite-scroll': 'infinite-scroll 100s linear infinite',
+        'infinite-scroll-reverse': 'infinite-scroll-reverse 100s linear infinite',
+        'slow-spin': 'slow-spin 40s linear infinite',
+      },
+      keyframes: {
+        'infinite-scroll': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-100%)' },
+        },
+        'infinite-scroll-reverse': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(100%)' },
+        },
+        'slow-spin': {
+          to: { transform: 'rotate(360deg)' },
+        },
+      }
     },
   },
   plugins: [],
