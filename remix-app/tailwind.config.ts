@@ -18,8 +18,8 @@ export default {
         fine: ['var(--font-size-fine)', '1.333'],
       },
       animation: {
-        'infinite-scroll': 'infinite-scroll 100s linear infinite',
-        'infinite-scroll-reverse': 'infinite-scroll-reverse 100s linear infinite',
+        'infinite-scroll': 'infinite-scroll 100s linear 1s',
+        'infinite-scroll-reverse': 'infinite-scroll-reverse 100s linear 1s',
         'slow-spin': 'slow-spin 40s linear infinite',
       },
       keyframes: {
