@@ -11,14 +11,14 @@ import { Section, Heading } from '~/components';
 import ReactPlayer from 'react-player';
 const Player = ReactPlayer.default
 
-export const meta: MetaFunction = () => {
-  return [{title: 'Actors'}]
-}
-
 export const loader = async ({params}: LoaderFunctionArgs) => {
   const initial = await loadQuery<Actor>(ACTOR_QUERY, params)
 
   return {initial, query: ACTOR_QUERY, params}
+}
+
+export const meta: MetaFunction<typeof loader> = ({data}) => {
+  return [{title: data.initial.data.name}]
 }
 
 export default function ActorRoute() {
