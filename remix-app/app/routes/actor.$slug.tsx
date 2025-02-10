@@ -8,6 +8,8 @@ import {loadQuery} from '~/sanity/loader.server'
 import {ACTOR_QUERY} from '~/sanity/queries'
 import {Actor} from '~/sanity/types'
 import { Section, Heading } from '~/components';
+import ReactPlayer from 'react-player';
+const Player = ReactPlayer.default
 
 export const meta: MetaFunction = () => {
   return [{title: 'Actors'}]
@@ -22,7 +24,6 @@ export const loader = async ({params}: LoaderFunctionArgs) => {
 export default function ActorRoute() {
   const {initial, query, params} = useLoaderData<typeof loader>()
   const {data, loading, error, encodeDataAttribute} = useQuery<typeof initial.data>(query, params, {
-    // @ts-expect-error -- TODO fix the typing here
     initial,
   })
 
@@ -80,6 +81,13 @@ export default function ActorRoute() {
             ))
           )}
         </div>
+      </div>
+      <div className="w-full flex flex-col lg:flex-row gap-4 mx-auto">
+        {data?.videos?.length && (
+          data.videos.map((url, i) => (
+            <Player key={i} url={url} controls width="100%"/>
+          ))
+        )}
       </div>
       <div className="">
         <Heading as="h1" size="heading" className="whitespace-normal mb-2 hidden md:block">

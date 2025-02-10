@@ -41,6 +41,13 @@ export default defineType({
       of: [{type: 'image'}]
     }),
     defineField({
+      name: 'videos',
+      title: 'Videos',
+      type: 'array',
+      of: [{type: 'url'}],
+      validation: (rule) => rule.max(3),
+    }),
+    defineField({
       name: 'body',
       title: 'Body',
       type: 'blockContent',
