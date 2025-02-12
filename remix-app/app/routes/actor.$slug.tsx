@@ -27,7 +27,10 @@ export const loader = async ({params}: LoaderFunctionArgs) => {
 }
 
 export const meta: MetaFunction<typeof loader> = ({data}) => {
-  return [{title: data.initial.data.name}]
+  return [
+    {title: data.initial.data.name},
+    {property: "og:image", content: data.initial.data.mainImage}
+  ]
 }
 
 export default function ActorRoute() {
