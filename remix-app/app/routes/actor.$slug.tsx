@@ -8,8 +8,17 @@ import {loadQuery} from '~/sanity/loader.server'
 import {ACTOR_QUERY} from '~/sanity/queries'
 import {Actor} from '~/sanity/types'
 import { Section, Heading } from '~/components';
+import { useState } from 'react';
+import Lightbox from "yet-another-react-lightbox";
+import lightbox from "yet-another-react-lightbox/styles.css";
 import ReactPlayer from 'react-player';
 const Player = ReactPlayer.default
+
+export const links: LinksFunction = () => {
+  return [
+    {rel: 'stylesheet', href: lightbox},
+  ]
+}
 
 export const loader = async ({params}: LoaderFunctionArgs) => {
   const initial = await loadQuery<Actor>(ACTOR_QUERY, params)
@@ -33,6 +42,12 @@ export default function ActorRoute() {
     return <div>Loading...</div>
   }
 
+  const [index, setIndex] = useState(-1);
+  let slides = [{src: urlFor(data.mainImage).url()}];
+  data.gallery?.map((img, i) => (
+    slides.push({src: urlFor(img).url()})
+  ))
+
   return (
     <Section padding="" className="px-6 md:px-8 lg:px-5 max-w-screen-2xl mx-auto" data-sanity={encodeDataAttribute('slug')}>
       <Heading as="h1" className="whitespace-normal text-2xl my-2 md:hidden">
@@ -43,9 +58,10 @@ export default function ActorRoute() {
           {data?.mainImage && (
             <img
               data-sanity={encodeDataAttribute('mainImage')}
-              className="flex-shrink-0 max-h-[620px] object-cover w-full md:w-fit"
+              className="flex-shrink-0 max-h-[620px] object-cover w-full md:w-fit cursor-pointer"
               src={urlFor(data.mainImage).url()}
               alt=""
+              onClick={() => setIndex(0)}
             />
           )}
           {data?.gallery?.length && (
@@ -53,13 +69,15 @@ export default function ActorRoute() {
               <img
                 key={i}
                 data-sanity={encodeDataAttribute('img')}
-                className="flex-shrink-0 h-[620px] object-cover w-full md:w-fit"
+                className="flex-shrink-0 h-[620px] object-cover w-full md:w-fit cursor-pointer"
                 src={urlFor(img).url()}
                 alt=""
+                onClick={() => setIndex(i+1)}
               />
             ))
           )}
         </div>
+        <Lightbox index={index} slides={slides} open={index >= 0} close={() => setIndex(-1)} />
         <div className="hidden md:flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"  aria-hidden="true">
           {data?.mainImage && (
             <img
