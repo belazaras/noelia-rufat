@@ -89,6 +89,7 @@ export default function ActorRoute() {
               className="flex-shrink-0 max-h-[620px] object-contain cursor-pointer"
               src={urlFor(data.mainImage).url()}
               alt=""
+              onClick={() => setIndex(0)}
             />
           )}
           {data?.gallery?.length && (
@@ -99,6 +100,7 @@ export default function ActorRoute() {
                 className="flex-shrink-0 max-h-[620px] object-contain cursor-pointer"
                 src={urlFor(img).url()}
                 alt=""
+                onClick={() => setIndex(i+1)}
               />
             ))
           )}
@@ -117,7 +119,7 @@ export default function ActorRoute() {
         </Heading>
         {/* {data?._createdAt && <p className="post__date">{formatDate(data._createdAt)}</p>} */}
         {data?.body && (
-          <div className="">
+          <div className="[&_p]:min-h-4 text-sm/7 font-mono">
             <PortableText value={data.body} />
           </div>
         )}
