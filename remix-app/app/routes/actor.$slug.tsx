@@ -8,7 +8,7 @@ import {loadQuery} from '~/sanity/loader.server'
 import {ACTOR_QUERY} from '~/sanity/queries'
 import {Actor} from '~/sanity/types'
 import { Section, Heading } from '~/components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import lightbox from "yet-another-react-lightbox/styles.css";
@@ -51,6 +51,10 @@ export default function ActorRoute() {
   data.gallery?.map((img, i) => (
     slides.push({src: urlFor(img).url()})
   ))
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <Section padding="" className="px-6 md:px-8 lg:px-5 max-w-screen-2xl mx-auto" data-sanity={encodeDataAttribute('slug')}>
@@ -58,7 +62,7 @@ export default function ActorRoute() {
         {data?.name}
       </Heading>
       <div className="w-full inline-flex flex-nowrap overflow-hidden">
-        <div className="md:flex items-center justify-center md:justify-start [&_li]:mx-8 md:animate-infinite-scroll">
+        <div className="md:flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:md:max-w-none md:animate-infinite-scroll">
           {data?.mainImage && (
             <img
               data-sanity={encodeDataAttribute('mainImage')}
@@ -82,7 +86,7 @@ export default function ActorRoute() {
           )}
         </div>
         <Lightbox index={index} slides={slides} open={index >= 0} close={() => setIndex(-1)} plugins={[Zoom]} />
-        <div className="hidden md:flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"  aria-hidden="true">
+        <div className="hidden md:flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:md:max-w-none md:animate-infinite-scroll" aria-hidden="true">
           {data?.mainImage && (
             <img
               data-sanity={encodeDataAttribute('mainImage')}
@@ -107,7 +111,7 @@ export default function ActorRoute() {
         </div>
       </div>
       <div className="w-full flex flex-col lg:flex-row gap-4 mx-auto">
-        {data?.videos?.length && (
+        {isClient && data?.videos?.length && (
           data.videos.map((url, i) => (
             <Player key={i} url={url} controls width="100%"/>
           ))
