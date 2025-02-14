@@ -30,7 +30,8 @@ export const loader = async ({params}: LoaderFunctionArgs) => {
 export const meta: MetaFunction<typeof loader> = ({data}) => {
   return [
     {title: data.initial.data.name},
-    {property: "og:image", content: data.initial.data.mainImage}
+    {property: "og:image", content: urlFor(data.initial.data.mainImage).url()},
+    {property: "og:description", content: "Noelia Rufat Representaciones"}
   ]
 }
 
