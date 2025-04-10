@@ -1,4 +1,7 @@
 import {useLoaderData, type MetaFunction} from '@remix-run/react'
+import {useQuery} from '@sanity/react-loader'
+import {loadQuery} from '~/sanity/loader.server'
+import {PERSONS_QUERY} from '~/sanity/queries'
 import { Hero } from '~/components';
 import { HeroFaces } from '~/components';
 
@@ -10,11 +13,27 @@ export const meta: MetaFunction = () => {
   ]
 }
 
+export const loader = async () => {
+  const initial = await loadQuery<Actor[]>(PERSONS_QUERY)
+  return {initial, query: PERSONS_QUERY, params: {}}
+}
+
 export default function Index() {
+  const {initial, query, params} = useLoaderData<typeof loader>()
+  const {data, loading, error, encodeDataAttribute} = useQuery<typeof initial.data>(query, params, {
+    initial,
+  })
+
+  if (error) {
+    throw error
+  } else if (loading && !data) {
+    return <div>Loading...</div>
+  }
+
   return (
     <>
       {/* <Hero top loading="lazy" title="NOELIA RUFAT" byline="Representaciones" /> */}
-      <HeroFaces/>
+      <HeroFaces data={data}/>
     </>
   )
 }

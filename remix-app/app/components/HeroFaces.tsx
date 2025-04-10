@@ -1,6 +1,10 @@
 import { Heading, Text } from '~/components';
+import {urlFor} from '~/sanity/image'
+import {Link} from '@remix-run/react'
+import {shuffleArray} from '~/lib/utils'
 
-export function HeroFaces({}) {
+export function HeroFaces({data}) {
+  shuffleArray(data);
   return (
     <>
       {/* <div className="absolute inset-0 flex items-center justify-center z-20 animate-spin"> */}
@@ -18,80 +22,66 @@ export function HeroFaces({}) {
       <div className="flex flex-col -mt-[30%] md:-mt-[4em] [&_img]:max-w-[315px] [&_img]:md:max-w-[340px] [&_img]:grayscale [&_img]:hover:grayscale-0 [&_img]:transition [&_img]:duration-250 [&_img]:brightness-50 [&_img]:hover:brightness-100">
         <div className="w-full inline-flex flex-nowrap overflow-hidden">
           <ul className="flex items-center justify-center md:justify-start animate-infinite-scroll">
-            <li><img src="https://picsum.photos/500?random=1" alt="Random person"/></li>
-            <li><img src="https://picsum.photos/500?random=2" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=3" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=4" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=5" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=6" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=7" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=8" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=9" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=10" alt="Random person" /></li>
+            {data?.length && (
+              data.slice(0,10).map((actor, i) => (
+                <li key={actor._id}><Link to={actor.slug?.current ? `/actor/${actor.slug.current}` : '/'}><img src={urlFor(actor.mainImage).width(500).height(500).url()} alt=""/></Link></li>
+              ))
+            )}
           </ul>
           <ul className="flex items-center justify-center md:justify-start animate-infinite-scroll" aria-hidden="true">
-            <li><img src="https://picsum.photos/500?random=1" alt="Random person"/></li>
-            <li><img src="https://picsum.photos/500?random=2" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=3" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=4" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=5" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=6" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=7" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=8" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=9" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=10" alt="Random person" /></li>
+            {data?.length && (
+              data.slice(0,10).map((actor, i) => (
+                <li key={actor._id}><Link to={actor.slug?.current ? `/actor/${actor.slug.current}` : '/'}><img src={urlFor(actor.mainImage).width(500).height(500).url()} alt=""/></Link></li>
+              ))
+            )}
           </ul>
         </div>
         <div className="w-full inline-flex flex-nowrap overflow-hidden">
           <ul className="flex items-center justify-center md:justify-start -translate-x-[100%] animate-infinite-scroll-reverse">
-            <li><img src="https://picsum.photos/500?random=11" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=12" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=13" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=14" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=15" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=16" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=17" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=18" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=19" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=20" alt="Random person" /></li>
+            {data?.length && (
+              data.slice(10,20).map((actor, i) => (
+                <li key={actor._id}><Link to={actor.slug?.current ? `/actor/${actor.slug.current}` : '/'}><img src={urlFor(actor.mainImage).width(500).height(500).url()} alt=""/></Link></li>
+              ))
+            )}
           </ul>
           <ul className="flex items-center justify-center md:justify-start -translate-x-[100%] animate-infinite-scroll-reverse" aria-hidden="true">
-            <li><img src="https://picsum.photos/500?random=11" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=12" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=13" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=14" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=15" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=16" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=17" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=18" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=19" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=20" alt="Random person" /></li>
+            {data?.length && (
+              data.slice(10,20).map((actor, i) => (
+                <li key={actor._id}><Link to={actor.slug?.current ? `/actor/${actor.slug.current}` : '/'}><img src={urlFor(actor.mainImage).width(500).height(500).url()} alt=""/></Link></li>
+              ))
+            )}
           </ul>
         </div>
         <div className="w-full inline-flex flex-nowrap overflow-hidden">
           <ul className="flex items-center justify-center md:justify-start animate-infinite-scroll">
-            <li><img src="https://picsum.photos/500?random=21" alt="Random person"/></li>
-            <li><img src="https://picsum.photos/500?random=22" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=23" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=24" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=25" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=26" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=27" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=28" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=29" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=30" alt="Random person" /></li>
+            {data?.length && (
+              data.slice(20,30).map((actor, i) => (
+                <li key={actor._id}><Link to={actor.slug?.current ? `/actor/${actor.slug.current}` : '/'}><img src={urlFor(actor.mainImage).width(500).height(500).url()} alt=""/></Link></li>
+              ))
+            )}
           </ul>
           <ul className="flex items-center justify-center md:justify-start animate-infinite-scroll" aria-hidden="true">
-            <li><img src="https://picsum.photos/500?random=21" alt="Random person"/></li>
-            <li><img src="https://picsum.photos/500?random=22" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=23" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=24" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=25" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=26" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=27" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=28" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=29" alt="Random person" /></li>
-            <li><img src="https://picsum.photos/500?random=30" alt="Random person" /></li>
+            {data?.length && (
+              data.slice(20,30).map((actor, i) => (
+                <li key={actor._id}><Link to={actor.slug?.current ? `/actor/${actor.slug.current}` : '/'}><img src={urlFor(actor.mainImage).width(500).height(500).url()} alt=""/></Link></li>
+              ))
+            )}
+          </ul>
+        </div>
+        <div className="w-full hidden md:inline-flex flex-nowrap overflow-hidden">
+          <ul className="flex items-center justify-center md:justify-start -translate-x-[100%] animate-infinite-scroll-reverse">
+            {data?.length && (
+              data.slice(5,15).map((actor, i) => (
+                <li key={actor._id}><Link to={actor.slug?.current ? `/actor/${actor.slug.current}` : '/'}><img src={urlFor(actor.mainImage).width(500).height(500).url()} alt=""/></Link></li>
+              ))
+            )}
+          </ul>
+          <ul className="flex items-center justify-center md:justify-start -translate-x-[100%] animate-infinite-scroll-reverse" aria-hidden="true">
+            {data?.length && (
+              data.slice(5,15).map((actor, i) => (
+                <li key={actor._id}><Link to={actor.slug?.current ? `/actor/${actor.slug.current}` : '/'}><img src={urlFor(actor.mainImage).width(500).height(500).url()} alt=""/></Link></li>
+              ))
+            )}
           </ul>
         </div>
       </div>

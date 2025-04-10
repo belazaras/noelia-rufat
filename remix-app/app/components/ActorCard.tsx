@@ -18,7 +18,7 @@ export function ActorCard({
           {actor.mainImage ? (
             <img
               data-sanity={encodeDataAttribute('mainImage')}
-              className="aspect-square object-contain w-full"
+              className="aspect-square object-contain w-full saturate-0 hover:saturate-100 transition duration-250"
               src={urlFor(actor.mainImage).width(500).height(500).url()}
               alt=""
             />
